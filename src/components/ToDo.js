@@ -20,9 +20,15 @@ export default class ToDo extends React.Component {
 
   render() {
     return (
-      <div>
-        <AddItemForm onSubmit={this.addToDo}/>
-        <ToDoList items={this.state.items}/>
+      <div className="container">
+        <div className="row d-flex justify-content-center mt-5">
+          <div className="col-6">
+            <AddItemForm onSubmit={this.addToDo}/>
+          </div>
+          <div className="col-6">
+            <ToDoList items={this.state.items}/>
+          </div>
+        </div>
       </div>
     );
   }

@@ -26,15 +26,17 @@ export default class AddItemForm extends React.Component {
 
   render () {
     return (
-      <form onSubmit={this.onSubmit} className="mt-5">
-        <label>
-          Name:
-          <input type="text" 
-            onChange={this.onChange}
-            value={this.state.inputText}
-          />
+      <form onSubmit={this.onSubmit} className="card p-3">
+        <label className="text-left">
+          <h1>Add new item</h1>
+          <div>
+            <input type="text" 
+              onChange={this.onChange}
+              value={this.state.inputText}
+            />
+          </div>
         </label>
-        <input type="submit" value="Submit" />
+        <input className="mt-3 w-25" type="submit" value="Submit"/>
       </form>
     )
   }
