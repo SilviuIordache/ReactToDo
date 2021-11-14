@@ -36,7 +36,7 @@ export default class AddItemForm extends React.Component {
             />
           </div>
         </label>
-        <input className="mt-3 w-25" type="submit" value="Submit"/>
+        <input className="mt-3" type="submit" value="Submit"/>
       </form>
     )
   }

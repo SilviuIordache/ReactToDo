@@ -6,8 +6,7 @@ export default class ToDo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
-      items: ['abc', '123', '#$%' ,'gogu']
+      items: []
     }
     this.addToDo = this.addToDo.bind(this);
   }
@@ -15,7 +14,28 @@ export default class ToDo extends React.Component {
   addToDo(item) {
     this.setState({
       items: [...this.state.items, item],
-    });
+    },
+    () => {
+      localStorage.setItem('lsItems', JSON.stringify([...this.state.items]));
+    }
+    );
+  }
+
+  componentDidMount() {
+    const storage = localStorage.getItem('lsItems');
+    
+    // check if localstorage has lsItems key
+    if (storage) {
+      const lsItems = JSON.parse(storage);
+      if (lsItems.length > 0) {
+        this.setState({
+          items: [...this.state.items, ...lsItems],
+        });
+      }
+    } else {
+      // otherwise create it
+      localStorage.setItem('lsItems', JSON.stringify(this.state.items));
+    }
   }
 
   render() {
