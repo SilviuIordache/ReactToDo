@@ -9,6 +9,7 @@ export default class ToDo extends React.Component {
       items: []
     }
     this.addToDo = this.addToDo.bind(this);
+    this.clearList = this.clearList.bind(this);
   }
 
   addToDo(item) {
@@ -38,6 +39,17 @@ export default class ToDo extends React.Component {
     }
   }
 
+  clearList() {
+    const clearConfirmation = window.confirm('Are you sure you want to delete all the items in the list?')
+
+    if (clearConfirmation) {
+      localStorage.removeItem('lsItems');
+      this.setState({
+        items: [],
+      });
+    }
+  }
+
   render() {
     return (
       <div className="container">
@@ -46,7 +58,7 @@ export default class ToDo extends React.Component {
             <AddItemForm onSubmit={this.addToDo}/>
           </div>
           <div className="col-6">
-            <ToDoList items={this.state.items}/>
+            <ToDoList items={this.state.items} clearList={this.clearList}/>
           </div>
         </div>
       </div>
