@@ -12,9 +12,15 @@ export default class ToDo extends React.Component {
     this.clearList = this.clearList.bind(this);
   }
 
-  addToDo(item) {
+  addToDo(text) {
     this.setState({
-      items: [...this.state.items, item],
+      items: [
+        ...this.state.items, 
+        {
+          text,
+          completed: false
+        }
+      ],
     },
     () => {
       localStorage.setItem('lsItems', JSON.stringify([...this.state.items]));

@@ -4,16 +4,29 @@ export default class ToDoList extends React.Component {
   constructor(props) {
     super(props);
     this.clearList = this.clearList.bind(this);
+    this.toggleCompletion = this.toggleCompletion.bind(this);
   }
 
   clearList() {
     this.props.clearList();
   }
+
+  toggleCompletion = (event) => {
+    console.log('toggle completion');
+    console.log(event)
+
+    // this.props.toggleItemCompletion(this.state.inputText);
+  }
+
   render() {
       const items = this.props.items?.map((item, index) =>
         <div key={index} className='d-flex align-items-center'>
-          <input type='checkbox' className='me-2'></input>
-          <p className='mb-0'>{item}</p>
+          <input 
+            onChange={this.toggleCompletion}
+            type='checkbox'
+            checked={item.completed}
+            className='me-2'/>
+          <p className='mb-0'>{item.text}</p>
         </div> 
       );
       return (
