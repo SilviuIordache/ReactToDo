@@ -12,8 +12,8 @@ export default class ToDoList extends React.Component {
   render() {
       const items = this.props.items?.map((item, index) =>
         <div key={index} className='d-flex align-items-center'>
-          <p className='mb-0'>{index + 1}. {item}</p>
-          <input type='checkbox' className='ms-2'></input>
+          <input type='checkbox' className='me-2'></input>
+          <p className='mb-0'>{item}</p>
         </div> 
       );
       return (
