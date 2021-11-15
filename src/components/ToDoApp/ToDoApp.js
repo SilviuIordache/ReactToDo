@@ -1,6 +1,6 @@
 import React from 'react';
-import AddItemForm from './AddItemForm/AddItemForm.js';
-import ToDoList from './ToDoList/ToDoList.js';
+import AddItemForm from '../AddItemForm/AddItemForm.js';
+import ToDoList from '../ToDoList/ToDoList.js';
 
 export default class ToDo extends React.Component {
   constructor(props) {
