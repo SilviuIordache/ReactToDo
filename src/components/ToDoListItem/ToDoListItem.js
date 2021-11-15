@@ -11,8 +11,12 @@ export default class ToDoListItem extends React.Component {
   }
 
   render() {
+    let className = 'd-flex align-items-center';
+    if (this.props.item.completed) {
+      className += ' text-decoration-line-through';
+    }
     return (
-      <div className='d-flex align-items-center'>
+      <div className={className}>
         <input 
           onChange={this.toggleCompletion}
           type='checkbox'
