@@ -7,10 +7,7 @@ export default class ToDoListItem extends React.Component {
   }
 
   toggleCompletion = (event) => {
-    console.log('toggle completion');
-    console.log(event)
-
-    // this.props.toggleItemCompletion(this.state.inputText);
+    this.props.toggleCompletion(this.props.index);
   }
 
   render() {

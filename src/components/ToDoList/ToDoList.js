@@ -13,21 +13,18 @@ export default class ToDoList extends React.Component {
   }
 
   toggleCompletion = (event) => {
-    console.log('toggle completion');
-    console.log(event)
-
-    // this.props.toggleItemCompletion(this.state.inputText);
+    this.props.toggleCompletion(event);
   }
 
   render() {
       const items = this.props.items?.map((item, index) =>
-        <ToDoListItem index={index} item={item} key={index}/>
+        <ToDoListItem index={index} item={item} key={index} toggleCompletion={this.toggleCompletion}/>
       );
       return (
         <div className="card p-3">
           <h2 className="mb-2">Items</h2>
           {items}
-          <button className='mt-3' onClick={this.clearList}> Clear list</button>
+          <button className='mt-3' onClick={this.clearList}>Clear list</button>
         </div>
       )
     }

@@ -10,6 +10,7 @@ export default class ToDo extends React.Component {
     }
     this.addToDo = this.addToDo.bind(this);
     this.clearList = this.clearList.bind(this);
+    this.toggleCompletion = this.toggleCompletion.bind(this);
   }
 
   addToDo(text) {
@@ -55,6 +56,25 @@ export default class ToDo extends React.Component {
     }
   }
 
+  toggleCompletion(event) {
+    // get index of item to toggle
+    const targetIndex = event;
+
+    // create copy of items
+    const tempItems = this.state.items
+    
+    // toggle completion
+    tempItems[targetIndex].completed = !tempItems[targetIndex].completed;
+
+    // update local state
+    this.setState({
+      items: tempItems
+    });
+
+    // update local storage
+    localStorage.setItem('lsItems', JSON.stringify(this.state.items))
+  }
+
   render() {
     return (
       <div className="container">
@@ -63,7 +83,11 @@ export default class ToDo extends React.Component {
             <AddItemForm onSubmit={this.addToDo}/>
           </div>
           <div className="col-6">
-            <ToDoList items={this.state.items} clearList={this.clearList}/>
+            <ToDoList 
+              items={this.state.items} 
+              clearList={this.clearList}
+              toggleCompletion={this.toggleCompletion}
+            />
           </div>
         </div>
       </div>
