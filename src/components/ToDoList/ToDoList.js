@@ -1,4 +1,5 @@
 import React from 'react';
+import ToDoListItem from '../ToDoListItem/ToDoListItem.js'
 
 export default class ToDoList extends React.Component {
   constructor(props) {
@@ -20,14 +21,7 @@ export default class ToDoList extends React.Component {
 
   render() {
       const items = this.props.items?.map((item, index) =>
-        <div key={index} className='d-flex align-items-center'>
-          <input 
-            onChange={this.toggleCompletion}
-            type='checkbox'
-            checked={item.completed}
-            className='me-2'/>
-          <p className='mb-0'>{item.text}</p>
-        </div> 
+        <ToDoListItem index={index} item={item} key={index}/>
       );
       return (
         <div className="card p-3">
