@@ -18,8 +18,7 @@ export default class ToDo extends React.Component {
     },
     () => {
       localStorage.setItem('lsItems', JSON.stringify([...this.state.items]));
-    }
-    );
+    });
   }
 
   componentDidMount() {
