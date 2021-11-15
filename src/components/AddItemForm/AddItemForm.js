@@ -6,10 +6,9 @@ export default class AddItemForm extends React.Component {
     this.state = {
       inputText: ''
     };
-    this.onChange = this.onChange.bind(this);
   }
 
-  onChange(event) {
+  onChange = (event) => {
     this.setState({
       inputText: event.target.value
     });
