@@ -43,19 +43,23 @@ export default class ToDo extends React.Component {
   }
 
   deleteItem = (index) => {
-    // create copy of items
-    const tempItems = this.state.items
+    const itemDeleteConfirm = window.confirm('Delete item?')
 
-    // remove item
-    tempItems.splice(index, 1);
-
-    // update local state
-    this.setState({
-      items: tempItems
-    });
-
-    // update local storage
-    localStorage.setItem('lsItems', JSON.stringify(this.state.items))
+    if (itemDeleteConfirm) {
+      // create copy of items
+      const tempItems = this.state.items
+  
+      // remove item
+      tempItems.splice(index, 1);
+  
+      // update local state
+      this.setState({
+        items: tempItems
+      });
+  
+      // update local storage
+      localStorage.setItem('lsItems', JSON.stringify(this.state.items))
+    }
   }
 
   toggleCompletion = (index) => {
