@@ -45,9 +45,11 @@ export default class ToDoListItem extends React.Component {
 
   render() {
     return (
-      <div className='d-flex align-items-center'>
-        {this.ItemCompletion()}
-        {this.ItemDescription()}
+      <div className='d-flex justify-content-between'>
+        <div className='d-flex align-items-center'>
+          {this.ItemCompletion()}
+          {this.ItemDescription()}
+        </div>
         {this.ItemDelete()}
       </div> 
     )
