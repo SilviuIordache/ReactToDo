@@ -12,7 +12,7 @@ export default class ToDoListItem extends React.Component {
   }
 
   deleteItem = () => {
-    this.propsDeleteItem(this.props.index)
+    this.props.deleteItem(this.props.index)
   }
 
   ItemCompletion = () => {
