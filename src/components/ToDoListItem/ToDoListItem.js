@@ -4,25 +4,51 @@ export default class ToDoListItem extends React.Component {
   constructor(props) {
     super(props);
     this.toggleCompletion = this.toggleCompletion.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
-  toggleCompletion = (event) => {
+  toggleCompletion = () => {
     this.props.toggleCompletion(this.props.index);
   }
 
-  render() {
-    let className = 'd-flex align-items-center';
+  deleteItem = () => {
+    this.propsDeleteItem(this.props.index)
+  }
+
+  ItemCompletion = () => {
+    return (
+      <input 
+      onChange={this.toggleCompletion}
+      type='checkbox'
+      checked={this.props.item.completed}
+      className='me-2'/>
+    )
+  }
+
+  ItemDescription = () => {
+    let className = 'mb-0'
     if (this.props.item.completed) {
       className += ' text-decoration-line-through';
     }
     return (
-      <div className={className}>
-        <input 
-          onChange={this.toggleCompletion}
-          type='checkbox'
-          checked={this.props.item.completed}
-          className='me-2'/>
-        <p className='mb-0'>{this.props.item.text}</p>
+      <p className={className}>{this.props.item.text}</p>
+    )
+  }
+
+  ItemDelete = () => {
+    return (
+      <button className="ms-2" onClick={this.deleteItem}>
+        Delete
+      </button>
+    )
+  }
+
+  render() {
+    return (
+      <div className='d-flex align-items-center'>
+        {this.ItemCompletion()}
+        {this.ItemDescription()}
+        {this.ItemDelete()}
       </div> 
     )
   }
