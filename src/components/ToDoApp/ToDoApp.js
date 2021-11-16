@@ -46,76 +46,45 @@ export default class ToDo extends React.Component {
     const itemDeleteConfirm = window.confirm('Delete item?')
 
     if (itemDeleteConfirm) {
-      // create copy of items
       const tempItems = this.state.items
-  
-      // remove item
       tempItems.splice(index, 1);
-  
-      // update local state
-      this.setState({
-        items: tempItems
-      });
-  
-      // update local storage
-      localStorage.setItem('lsItems', JSON.stringify(this.state.items))
+      this.updateList(tempItems);
     }
   }
 
   toggleCompletion = (index) => {
-    // create copy of items
     const tempItems = this.state.items
-    
-    // toggle completion
     tempItems[index].completed = !tempItems[index].completed;
-
-    // update local state
-    this.setState({
-      items: tempItems
-    });
-
-    // update local storage
-    localStorage.setItem('lsItems', JSON.stringify(this.state.items))
+    this.updateList(tempItems);
   }
 
   checkAll = () => {
     const tempItems = this.state.items;
     tempItems.forEach((item) => item.completed = true);
-    this.setState({
-      items: tempItems
-    });
-    localStorage.setItem('lsItems', JSON.stringify(this.state.items))
+    this.updateList(tempItems);
   }
 
   uncheckAll = () => {
     const tempItems = this.state.items;
     tempItems.forEach((item) => item.completed = false);
-    this.setState({
-      items: tempItems
-    });
-    localStorage.setItem('lsItems', JSON.stringify(this.state.items))
+    this.updateList(tempItems);
   }
 
   deleteAll = () => {
     const clearConfirmation = window.confirm('Are you sure you want to delete all the items in the list?')
-
     if (clearConfirmation) {
-      localStorage.removeItem('lsItems');
-      this.setState({
-        items: [],
-      });
+      this.updateList([]);
     }
   }
 
   deleteAllChecked = () => {
     const tempItems = this.state.items.filter((item) => item.completed === false);
+    this.updateList(tempItems);
+  }
 
-    this.setState({
-      items: tempItems
-    },
-      () => {
-        localStorage.setItem('lsItems', JSON.stringify(this.state.items))
-      }
+  updateList = (items) => {
+    this.setState({ items },
+      () => { localStorage.setItem('lsItems', JSON.stringify(this.state.items)) }
     );
   }
 
