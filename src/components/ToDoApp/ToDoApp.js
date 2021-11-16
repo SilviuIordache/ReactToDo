@@ -94,7 +94,7 @@ export default class ToDo extends React.Component {
     });
   }
 
-  clearList = () => {
+  deleteAll = () => {
     const clearConfirmation = window.confirm('Are you sure you want to delete all the items in the list?')
 
     if (clearConfirmation) {
@@ -117,7 +117,7 @@ export default class ToDo extends React.Component {
               items={this.state.items} 
               checkAll={this.checkAll}
               uncheckAll={this.uncheckAll}
-              clearList={this.clearList}
+              deleteAll={this.deleteAll}
               toggleCompletion={this.toggleCompletion}
               deleteItem={this.deleteItem}
             />

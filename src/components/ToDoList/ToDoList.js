@@ -20,8 +20,8 @@ export default class ToDoList extends React.Component {
     this.props.uncheckAll();
   }
 
-  clearList = () => {
-    this.props.clearList();
+  deleteAll = () => {
+    this.props.deleteAll();
   }
   
   getCompletedItems = () => {
@@ -55,7 +55,7 @@ export default class ToDoList extends React.Component {
       <div className='mt-4'>
         <button onClick={this.checkAll}>Check all</button>
         <button onClick={this.uncheckAll}>Uncheck all</button>
-        <button onClick={this.clearList}>Delete all</button>
+        <button onClick={this.deleteAll}>Delete all</button>
       </div>
     )
   }
