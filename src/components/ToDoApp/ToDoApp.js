@@ -44,7 +44,6 @@ export default class ToDo extends React.Component {
 
   deleteItem = (index) => {
     const itemDeleteConfirm = window.confirm('Delete item?')
-
     if (itemDeleteConfirm) {
       const tempItems = this.state.items
       tempItems.splice(index, 1);
@@ -78,8 +77,11 @@ export default class ToDo extends React.Component {
   }
 
   deleteAllChecked = () => {
-    const tempItems = this.state.items.filter((item) => item.completed === false);
-    this.updateList(tempItems);
+    const clearConfirmation = window.confirm('Are you sure you want to delete all COMPLETED items in the list?')
+    if (clearConfirmation) {
+      const tempItems = this.state.items.filter((item) => item.completed === false);
+      this.updateList(tempItems);
+    }
   }
 
   updateList = (items) => {
