@@ -8,24 +8,6 @@ export default class ToDo extends React.Component {
     this.state = {
       items: []
     }
-    this.addToDo = this.addToDo.bind(this);
-    this.clearList = this.clearList.bind(this);
-    this.toggleCompletion = this.toggleCompletion.bind(this);
-  }
-
-  addToDo(text) {
-    this.setState({
-      items: [
-        ...this.state.items, 
-        {
-          text,
-          completed: false
-        }
-      ],
-    },
-    () => {
-      localStorage.setItem('lsItems', JSON.stringify([...this.state.items]));
-    });
   }
 
   componentDidMount() {
@@ -45,18 +27,26 @@ export default class ToDo extends React.Component {
     }
   }
 
-  clearList() {
-    const clearConfirmation = window.confirm('Are you sure you want to delete all the items in the list?')
-
-    if (clearConfirmation) {
-      localStorage.removeItem('lsItems');
-      this.setState({
-        items: [],
-      });
-    }
+  addToDo = (text) => {
+    this.setState({
+      items: [
+        ...this.state.items, 
+        {
+          text,
+          completed: false
+        }
+      ],
+    },
+    () => {
+      localStorage.setItem('lsItems', JSON.stringify([...this.state.items]));
+    });
   }
 
-  toggleCompletion(event) {
+  deleteItem = (event) => {
+    console.log(event)
+  }
+
+  toggleCompletion = (event) => {
     // get index of item to toggle
     const targetIndex = event;
 
@@ -75,6 +65,17 @@ export default class ToDo extends React.Component {
     localStorage.setItem('lsItems', JSON.stringify(this.state.items))
   }
 
+  clearList = () => {
+    const clearConfirmation = window.confirm('Are you sure you want to delete all the items in the list?')
+
+    if (clearConfirmation) {
+      localStorage.removeItem('lsItems');
+      this.setState({
+        items: [],
+      });
+    }
+  }
+
   render() {
     return (
       <div className="container">
@@ -87,6 +88,7 @@ export default class ToDo extends React.Component {
               items={this.state.items} 
               clearList={this.clearList}
               toggleCompletion={this.toggleCompletion}
+              deleteItem={this.deleteItem}
             />
           </div>
         </div>
