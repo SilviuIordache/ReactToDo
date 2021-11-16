@@ -108,12 +108,15 @@ export default class ToDo extends React.Component {
   }
 
   deleteAllChecked = () => {
-    const tempItems = this.state.items.filter((item) => item.completed === true);
+    const tempItems = this.state.items.filter((item) => item.completed === false);
 
     this.setState({
       items: tempItems
-    });
-
+    },
+      () => {
+        localStorage.setItem('lsItems', JSON.stringify(this.state.items))
+      }
+    );
   }
 
   render() {
