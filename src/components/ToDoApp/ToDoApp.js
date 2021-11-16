@@ -42,19 +42,17 @@ export default class ToDo extends React.Component {
     });
   }
 
-  deleteItem = (event) => {
-    console.log(event)
+  deleteItem = (index) => {
+    console.log(index)
   }
 
-  toggleCompletion = (event) => {
-    // get index of item to toggle
-    const targetIndex = event;
+  toggleCompletion = (index) => {
 
     // create copy of items
     const tempItems = this.state.items
     
     // toggle completion
-    tempItems[targetIndex].completed = !tempItems[targetIndex].completed;
+    tempItems[index].completed = !tempItems[index].completed;
 
     // update local state
     this.setState({
