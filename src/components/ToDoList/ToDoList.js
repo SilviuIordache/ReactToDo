@@ -13,12 +13,16 @@ export default class ToDoList extends React.Component {
   deleteItem = (event) => {
     this.props.deleteItem(event);
   }
+  
+  completedItems = () => {
+    return this.props.items.filter(item => item.completed === true).length
+  }
 
   ListHeader = () => {
     return (
       <h2 className="mb-2 d-flex justify-content-between mb-4">
         <span>Items</span>
-        <span>1/3</span>
+        <span>{this.completedItems()}/{this.props.items.length}</span>
       </h2>
     )
   }
