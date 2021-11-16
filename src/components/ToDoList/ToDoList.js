@@ -2,9 +2,7 @@ import React from 'react';
 import ToDoListItem from '../ToDoListItem/ToDoListItem.js'
 
 export default class ToDoList extends React.Component {
-  clearList = () => {
-    this.props.clearList();
-  }
+  
 
   toggleCompletion = (event) => {
     this.props.toggleCompletion(event);
@@ -13,8 +11,20 @@ export default class ToDoList extends React.Component {
   deleteItem = (event) => {
     this.props.deleteItem(event);
   }
+
+  checkAll = () => {
+    this.props.checkAll();
+  }
+
+  uncheckAll = () => {
+    this.props.uncheckAll();
+  }
+
+  clearList = () => {
+    this.props.clearList();
+  }
   
-  completedItems = () => {
+  getCompletedItems = () => {
     return this.props.items.filter(item => item.completed === true).length
   }
 
@@ -22,7 +32,7 @@ export default class ToDoList extends React.Component {
     return (
       <h2 className="mb-2 d-flex justify-content-between mb-4">
         <span>Items</span>
-        <span>{this.completedItems()}/{this.props.items.length}</span>
+        <span>{this.getCompletedItems()}/{this.props.items.length}</span>
       </h2>
     )
   }
@@ -40,9 +50,13 @@ export default class ToDoList extends React.Component {
     return items;
   }
 
-  ListClear = () => {
+  ListFooter = () => {
     return (
-      <button className='mt-4' onClick={this.clearList}>Clear list</button>
+      <div className='mt-4'>
+        <button onClick={this.checkAll}>Check all</button>
+        <button onClick={this.uncheckAll}>Uncheck all</button>
+        <button onClick={this.clearList}>Delete all</button>
+      </div>
     )
   }
 
@@ -51,7 +65,7 @@ export default class ToDoList extends React.Component {
       <div className="card p-3">
         {this.ListHeader()}
         {this.ListItems()}
-        {this.ListClear()}
+        {this.ListFooter()}
       </div>
     )
   }

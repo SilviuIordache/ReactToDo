@@ -78,6 +78,22 @@ export default class ToDo extends React.Component {
     localStorage.setItem('lsItems', JSON.stringify(this.state.items))
   }
 
+  checkAll = () => {
+    const tempItems = this.state.items;
+    tempItems.forEach((item) => item.completed = true);
+    this.setState({
+      items: tempItems
+    });
+  }
+
+  uncheckAll = () => {
+    const tempItems = this.state.items;
+    tempItems.forEach((item) => item.completed = false);
+    this.setState({
+      items: tempItems
+    });
+  }
+
   clearList = () => {
     const clearConfirmation = window.confirm('Are you sure you want to delete all the items in the list?')
 
@@ -99,6 +115,8 @@ export default class ToDo extends React.Component {
           <div className="col-6">
             <ToDoList 
               items={this.state.items} 
+              checkAll={this.checkAll}
+              uncheckAll={this.uncheckAll}
               clearList={this.clearList}
               toggleCompletion={this.toggleCompletion}
               deleteItem={this.deleteItem}
