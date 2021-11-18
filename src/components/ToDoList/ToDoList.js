@@ -12,12 +12,8 @@ export default class ToDoList extends React.Component {
     this.props.deleteItem(event);
   }
 
-  checkAll = () => {
-    this.props.checkAll();
-  }
-
-  uncheckAll = () => {
-    this.props.uncheckAll();
+  toggleCheckAll = (event) => {
+    this.props.toggleCheckAll(event.target.checked);
   }
 
   deleteAll = () => {
@@ -27,7 +23,6 @@ export default class ToDoList extends React.Component {
   deleteAllChecked = () => {
     this.props.deleteAllChecked();
   }
-
   
   getCompletedItems = () => {
     return this.props.items.filter(item => item.completed === true).length
@@ -42,6 +37,15 @@ export default class ToDoList extends React.Component {
     )
   }
 
+  ListItemsOperations = () => {
+    const operations = (
+      <div className="form-check border-bottom pb-2 mb-2">
+        <input className="form-check-input" type="checkbox" onChange={this.toggleCheckAll}/>
+      </div>
+    )
+    return operations;
+  }
+
   ListItems = () => {
     const items = this.props.items?.map((item, index) =>
       <ToDoListItem 
@@ -52,14 +56,14 @@ export default class ToDoList extends React.Component {
         deleteItem={this.deleteItem}
       />
     );
-    return items;
+    return (
+      items
+    )
   }
 
   ListFooter = () => {
     return (
       <div className='mt-4'>
-        <button onClick={this.checkAll}>Check all</button>
-        <button onClick={this.uncheckAll}>Uncheck all</button>
         <button onClick={this.deleteAllChecked}>Delete all checked</button>
         <button onClick={this.deleteAll}>Delete all</button>
       </div>
@@ -70,6 +74,7 @@ export default class ToDoList extends React.Component {
     return (
       <div className="card p-3">
         {this.ListHeader()}
+        {this.ListItemsOperations()}
         {this.ListItems()}
         {this.ListFooter()}
       </div>

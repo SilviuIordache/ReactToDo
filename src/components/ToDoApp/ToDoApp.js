@@ -57,15 +57,9 @@ export default class ToDo extends React.Component {
     this.updateList(tempItems);
   }
 
-  checkAll = () => {
+  toggleCheckAll = (checkedState) => {
     const tempItems = this.state.items;
-    tempItems.forEach((item) => item.completed = true);
-    this.updateList(tempItems);
-  }
-
-  uncheckAll = () => {
-    const tempItems = this.state.items;
-    tempItems.forEach((item) => item.completed = false);
+    tempItems.forEach((item) => item.completed = checkedState);
     this.updateList(tempItems);
   }
 
@@ -100,8 +94,7 @@ export default class ToDo extends React.Component {
           <div className="col-6">
             <ToDoList 
               items={this.state.items} 
-              checkAll={this.checkAll}
-              uncheckAll={this.uncheckAll}
+              toggleCheckAll={this.toggleCheckAll}
               deleteAllChecked={this.deleteAllChecked}
               deleteAll={this.deleteAll}
               toggleCompletion={this.toggleCompletion}
