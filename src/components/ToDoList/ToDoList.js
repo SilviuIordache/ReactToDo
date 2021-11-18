@@ -24,7 +24,7 @@ export default class ToDoList extends React.Component {
     this.props.deleteAllChecked();
   }
   
-  getCompletedItems = () => {
+  getCompletedItemsNumber = () => {
     return this.props.items.filter(item => item.completed === true).length
   }
 
@@ -33,7 +33,7 @@ export default class ToDoList extends React.Component {
       <div className="mb-2 d-flex justify-content-between mb-4 ">
         <h2>Items</h2>
         <h2 className="d-flex justify-content-between">
-          <p>{this.getCompletedItems()}/{this.props.items.length}</p>
+          <p>{this.getCompletedItemsNumber()}/{this.props.items.length}</p>
         </h2>
       </div>
     )
@@ -71,7 +71,12 @@ export default class ToDoList extends React.Component {
   ListFooter = () => {
     return (
       <div className='mt-4 d-flex justify-content-center'>
-        <button className='btn btn-warning' onClick={this.deleteAllChecked}>Delete all checked</button>
+        <button
+          className='btn btn-warning'
+          disabled={this.getCompletedItemsNumber() === 0}
+          onClick={this.deleteAllChecked}>
+            Delete all checked
+        </button>
       </div>
     )
   }
