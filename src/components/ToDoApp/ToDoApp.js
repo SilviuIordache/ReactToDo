@@ -88,10 +88,10 @@ export default class ToDo extends React.Component {
     return (
       <div className="container">
         <div className="row d-flex justify-content-center mt-5">
-          <div className="col-6">
+          <div className="col-12 col-md-6 col-xl-4">
             <AddItemForm onSubmit={this.addItem}/>
           </div>
-          <div className="col-6">
+          <div className="col-12 col-md-6 col-xl-4">
             <ToDoList 
               items={this.state.items} 
               toggleCheckAll={this.toggleCheckAll}
