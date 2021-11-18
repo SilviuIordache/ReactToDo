@@ -26,10 +26,21 @@ export default class ToDoList extends React.Component {
     return this.props.items.filter((item) => item.completed === true).length;
   };
 
+  allItemsCompleted = () => {
+    return this.getCompletedItemsNumber() === this.props.items.length;
+  };
+
   ListHeader = () => {
+    let className = "mb-2 d-flex justify-content-between mb-4";
+    if (this.allItemsCompleted()) {
+      className += " text-success";
+    }
     return (
-      <div className="mb-2 d-flex justify-content-between mb-4 ">
-        <h2>Items</h2>
+      <div className={className}>
+        <div className="d-flex">
+          <h2>Completed</h2>
+          {this.allItemsCompleted() && <i className="fas fa-2x fa-check ms-2"></i>}
+        </div>
         <h2 className="d-flex justify-content-between">
           <p>
             {this.getCompletedItemsNumber()}/{this.props.items.length}
@@ -68,7 +79,7 @@ export default class ToDoList extends React.Component {
           onClick={this.deleteAll}
           disabled={this.props.items.length === 0}
         >
-          <i class="far fa-xs fa-trash-alt"></i>
+          <i className="far fa-xs fa-trash-alt"></i>
         </button>
       </div>
     );

@@ -38,7 +38,7 @@ export default class ToDoListItem extends React.Component {
   ItemDelete = () => {
     return (
       <button className="btn btn-secondary btn-sm ms-2" onClick={this.deleteItem}>
-        <i class="far fa-xs fa-trash-alt"></i>
+        <i className="far fa-xs fa-trash-alt"></i>
       </button>
     )
   }
