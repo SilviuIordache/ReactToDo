@@ -60,11 +60,13 @@ export default class ToDoList extends React.Component {
             className="form-check-input"
             type="checkbox"
             onChange={this.toggleCheckAll}
+            disabled={this.props.items.length === 0}
           />
         </div>
         <button
           className="btn btn-warning btn-sm ms-2"
           onClick={this.deleteAll}
+          disabled={this.props.items.length === 0}
         >
           <i class="far fa-xs fa-trash-alt"></i>
         </button>
