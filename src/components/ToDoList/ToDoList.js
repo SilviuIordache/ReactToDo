@@ -30,7 +30,7 @@ export default class ToDoList extends React.Component {
 
   ListHeader = () => {
     return (
-      <div className="mb-2 d-flex justify-content-between mb-4">
+      <div className="mb-2 d-flex justify-content-between mb-4 ">
         <h2>Items</h2>
         <h2 className="d-flex justify-content-between">
           <p>{this.getCompletedItems()}/{this.props.items.length}</p>
@@ -41,7 +41,7 @@ export default class ToDoList extends React.Component {
 
   ListItemsOperations = () => {
     const operations = (
-      <div className="d-flex justify-content-between border-bottom pb-2 mb-2">
+      <div className="d-flex justify-content-between border-top pt-2 mt-2 ">
         <div className="form-check">
           <input className="form-check-input" type="checkbox" onChange={this.toggleCheckAll}/>
         </div>
@@ -80,8 +80,8 @@ export default class ToDoList extends React.Component {
     return (
       <div className="card p-3">
         {this.ListHeader()}
-        {this.ListItemsOperations()}
         {this.ListItems()}
+        {this.ListItemsOperations()}
         {this.ListFooter()}
       </div>
     )
