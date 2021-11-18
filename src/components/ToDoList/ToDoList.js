@@ -39,20 +39,6 @@ export default class ToDoList extends React.Component {
     )
   }
 
-  ListItemsOperations = () => {
-    const operations = (
-      <div className="d-flex justify-content-between border-top pt-2 mt-2 ">
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" onChange={this.toggleCheckAll}/>
-        </div>
-        <button className="btn btn-warning btn-sm ms-2" onClick={this.deleteAll}>
-          <i class="far fa-xs fa-trash-alt"></i>
-        </button>
-      </div>
-    )
-    return operations;
-  }
-
   ListItems = () => {
     const items = this.props.items?.map((item, index) =>
       <ToDoListItem 
@@ -66,6 +52,20 @@ export default class ToDoList extends React.Component {
     return (
       items
     )
+  }
+
+  ListItemsOperations = () => {
+    const operations = (
+      <div className="d-flex justify-content-between border-top pt-2 mt-2 ">
+        <div className="form-check">
+          <input className="form-check-input" type="checkbox" onChange={this.toggleCheckAll}/>
+        </div>
+        <button className="btn btn-warning btn-sm ms-2" onClick={this.deleteAll}>
+          <i class="far fa-xs fa-trash-alt"></i>
+        </button>
+      </div>
+    )
+    return operations;
   }
 
   ListFooter = () => {
