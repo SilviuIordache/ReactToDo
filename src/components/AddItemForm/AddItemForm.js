@@ -29,13 +29,14 @@ export default class AddItemForm extends React.Component {
         <label className="text-left">
           <h2 className='mb-4'>Add new item</h2>
           <div>
-            <input type="text" 
+            <input type="text"
+              className='form-control'
               onChange={this.onChange}
               value={this.state.inputText}
             />
           </div>
         </label>
-        <input className="mt-3 w-50" type="submit" value="Submit"/>
+        <input className="mt-3 w-50 btn btn-primary" type="submit" value="Add"/>
       </form>
     )
   }
