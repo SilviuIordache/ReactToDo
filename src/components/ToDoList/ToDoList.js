@@ -30,10 +30,12 @@ export default class ToDoList extends React.Component {
 
   ListHeader = () => {
     return (
-      <h2 className="mb-2 d-flex justify-content-between mb-4">
-        <span>Items</span>
-        <span>{this.getCompletedItems()}/{this.props.items.length}</span>
-      </h2>
+      <div className="mb-2 d-flex justify-content-between mb-4">
+        <h2>Items</h2>
+        <h2 className="d-flex justify-content-between">
+          <p>{this.getCompletedItems()}/{this.props.items.length}</p>
+        </h2>
+      </div>
     )
   }
 

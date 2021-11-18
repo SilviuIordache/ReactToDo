@@ -37,15 +37,15 @@ export default class ToDoListItem extends React.Component {
 
   ItemDelete = () => {
     return (
-      <button className="ms-2" onClick={this.deleteItem}>
-        Delete
+      <button className="btn btn-secondary btn-sm ms-2" onClick={this.deleteItem}>
+        <i class="far fa-xs fa-trash-alt"></i>
       </button>
     )
   }
 
   render() {
     return (
-      <div className='d-flex justify-content-between'>
+      <div className='d-flex justify-content-between mb-3'>
         <div className='d-flex align-items-center'>
           {this.ItemCompletion()}
           {this.ItemDescription()}
