@@ -21,7 +21,7 @@ export default class ToDoListItem extends React.Component {
       onChange={this.toggleCompletion}
       type='checkbox'
       checked={this.props.item.completed}
-      className='me-2'/>
+      className='form-check-input me-2'/>
     )
   }
 
