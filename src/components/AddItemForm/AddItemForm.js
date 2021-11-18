@@ -25,7 +25,7 @@ export default class AddItemForm extends React.Component {
 
   render () {
     return (
-      <form onSubmit={this.onSubmit} className="card p-3">
+      <form onSubmit={this.onSubmit} className="card bg-white p-4">
         <label className="text-left">
           <h2 className='mb-4'>Add new item</h2>
           <div>

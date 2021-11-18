@@ -91,7 +91,7 @@ export default class ToDoList extends React.Component {
 
   render() {
     return (
-      <div className="card p-3">
+      <div className="card bg-white p-4">
         {this.ListHeader()}
         {this.ListItems()}
         {this.ListItemsOperations()}
