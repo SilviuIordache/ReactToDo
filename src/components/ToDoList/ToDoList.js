@@ -31,6 +31,8 @@ export default class ToDoList extends React.Component {
   };
 
   allItemsCompleted = () => {
+    if (this.props.items.length === 0)
+      return false
     return this.getCompletedItemsNumber() === this.props.items.length;
   };
 
@@ -80,7 +82,7 @@ export default class ToDoList extends React.Component {
           />
         </div>
         <button
-          className="btn btn-warning btn-sm ms-2"
+          className="btn btn-danger btn-sm ms-2"
           onClick={this.deleteAll}
           disabled={this.props.items.length === 0}
         >
