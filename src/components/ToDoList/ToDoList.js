@@ -10,6 +10,10 @@ export default class ToDoList extends React.Component {
     this.props.deleteItem(event);
   };
 
+  editItem = (event) => {
+    this.props.editItem(event);
+  };
+
   toggleCheckAll = (event) => {
     this.props.toggleCheckAll(event.target.checked);
   };
@@ -58,6 +62,7 @@ export default class ToDoList extends React.Component {
         key={index}
         toggleCompletion={this.toggleCompletion}
         deleteItem={this.deleteItem}
+        editItem={this.editItem}
       />
     ));
     return items;

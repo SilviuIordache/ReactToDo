@@ -1,26 +1,14 @@
 import React from 'react';
 
 export default class AddItemForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputText: ''
-    };
-  }
 
   onChange = (event) => {
-    this.setState({
-      inputText: event.target.value
-    });
+    this.props.onChange(event.target.value);
   }
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmit(this.state.inputText);
-
-    this.setState({
-      inputText: ''
-    });
+    this.props.onSubmit();
   }
 
   render () {
@@ -32,7 +20,7 @@ export default class AddItemForm extends React.Component {
             <input type="text"
               className='form-control'
               onChange={this.onChange}
-              value={this.state.inputText}
+              value={this.props.itemText}
             />
           </div>
         </label>

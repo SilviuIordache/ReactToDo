@@ -6,7 +6,8 @@ export default class ToDo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      items: [],
+      itemText: ''
     }
   }
 
@@ -27,19 +28,26 @@ export default class ToDo extends React.Component {
     }
   }
 
-  addItem = (text) => {
+  addItem = () => {
     this.setState({
       items: [
         ...this.state.items, 
         {
-          text,
+          text: this.state.itemText,
           completed: false
         }
       ],
+      itemText: ''
     },
     () => {
       localStorage.setItem('lsItems', JSON.stringify([...this.state.items]));
     });
+  }
+
+  updateNewItem = (newVal) => {
+    this.setState({
+      itemText: newVal
+    })
   }
 
   deleteItem = (index) => {
@@ -49,6 +57,21 @@ export default class ToDo extends React.Component {
       tempItems.splice(index, 1);
       this.updateList(tempItems);
     }
+  }
+
+  editItem = (index) => {
+    // make copy of items
+    const tempItems = this.state.items
+
+    // copy itemToEdit
+    const editItem = tempItems[index];
+
+    // remove it from the temp list
+    tempItems.splice(index, 1)
+
+    this.setState({
+      itemText: editItem.text,
+    })
   }
 
   toggleCompletion = (index) => {
@@ -89,7 +112,11 @@ export default class ToDo extends React.Component {
       <div className="container">
         <div className="row d-flex justify-content-center mt-5">
           <div className="col-12 col-md-6 col-xl-4">
-            <AddItemForm onSubmit={this.addItem}/>
+            <AddItemForm 
+              onSubmit={this.addItem}
+              onChange={this.updateNewItem}
+              itemText={this.state.itemText}
+            />
           </div>
           <div className="col-12 col-md-6 col-xl-4">
             <ToDoList 
@@ -99,6 +126,7 @@ export default class ToDo extends React.Component {
               deleteAll={this.deleteAll}
               toggleCompletion={this.toggleCompletion}
               deleteItem={this.deleteItem}
+              editItem={this.editItem}
             />
           </div>
         </div>

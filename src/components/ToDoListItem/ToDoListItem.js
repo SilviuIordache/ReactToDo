@@ -1,11 +1,6 @@
 import React from 'react';
 
 export default class ToDoListItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.toggleCompletion = this.toggleCompletion.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
-  }
 
   toggleCompletion = () => {
     this.props.toggleCompletion(this.props.index);
@@ -13,6 +8,10 @@ export default class ToDoListItem extends React.Component {
 
   deleteItem = () => {
     this.props.deleteItem(this.props.index)
+  }
+
+  editItem = () => {
+    this.props.editItem(this.props.index)
   }
 
   ItemCompletion = () => {
@@ -43,6 +42,14 @@ export default class ToDoListItem extends React.Component {
     )
   }
 
+  ItemEdit = () => {
+    return (
+      <button className="btn btn-secondary btn-sm ms-2" onClick={this.editItem}>
+        <i className="fas fa-xs fa-edit"></i>
+      </button>
+    )
+  }
+
   render() {
     return (
       <div className='d-flex justify-content-between mb-3'>
@@ -50,7 +57,12 @@ export default class ToDoListItem extends React.Component {
           {this.ItemCompletion()}
           {this.ItemDescription()}
         </div>
-        {this.ItemDelete()}
+
+        <div className='d-flex align-items-center'>
+          {this.ItemEdit()}
+          {this.ItemDelete()}
+        </div>
+        
       </div> 
     )
   }
