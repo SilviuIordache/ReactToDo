@@ -7,7 +7,7 @@ export default class ToDo extends React.Component {
     super(props);
     this.state = {
       items: [],
-      itemText: ''
+      inputText: ''
     }
   }
 
@@ -33,11 +33,11 @@ export default class ToDo extends React.Component {
       items: [
         ...this.state.items, 
         {
-          text: this.state.itemText,
+          text: this.state.inputText,
           completed: false
         }
       ],
-      itemText: ''
+      inputText: ''
     },
     () => {
       localStorage.setItem('lsItems', JSON.stringify([...this.state.items]));
@@ -46,7 +46,7 @@ export default class ToDo extends React.Component {
 
   updateNewItem = (newVal) => {
     this.setState({
-      itemText: newVal
+      inputText: newVal
     })
   }
 
@@ -70,7 +70,7 @@ export default class ToDo extends React.Component {
     tempItems.splice(index, 1)
 
     this.setState({
-      itemText: editItem.text,
+      inputText: editItem.text,
     })
   }
 
@@ -115,7 +115,7 @@ export default class ToDo extends React.Component {
             <AddItemForm 
               onSubmit={this.addItem}
               onChange={this.updateNewItem}
-              itemText={this.state.itemText}
+              inputText={this.state.inputText}
             />
           </div>
           <div className="col-12 col-md-6 col-xl-4">
