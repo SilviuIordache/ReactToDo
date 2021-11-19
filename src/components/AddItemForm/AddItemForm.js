@@ -24,7 +24,12 @@ export default class AddItemForm extends React.Component {
             />
           </div>
         </label>
-        <input className="mt-3 w-50 btn btn-primary" type="submit" value="Add"/>
+        <input 
+          className="mt-3 w-50 btn btn-primary"
+          type="submit"
+          value="Add"
+          disabled={this.props.inputText === ''}
+        />
       </form>
     )
   }
