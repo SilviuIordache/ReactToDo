@@ -20,7 +20,7 @@ export default class AddItemForm extends React.Component {
             <input type="text"
               className='form-control'
               onChange={this.onChange}
-              value={this.props.itemText}
+              value={this.props.inputText}
             />
           </div>
         </label>
