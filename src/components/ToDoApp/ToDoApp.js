@@ -7,6 +7,12 @@ export default class ToDo extends React.Component {
     super(props);
     this.state = {
       items: [],
+      exampleItems: [
+        { text: 'go for a run', completed: false},
+        { text: 'relax', completed: false},
+        { text: 'clean the house', completed: true}, 
+        { text: 'take out trash', completed: true}, 
+      ],
       inputText: ''
     }
   }
@@ -23,8 +29,12 @@ export default class ToDo extends React.Component {
         });
       }
     } else {
-      // otherwise create it
-      localStorage.setItem('lsItems', JSON.stringify(this.state.items));
+      // otherwise initialize list with examples
+      this.setState({
+        items: this.state.exampleItems
+      })
+      // store it in ls
+      localStorage.setItem('lsItems', JSON.stringify(this.state.exampleItems));
     }
   }
 
