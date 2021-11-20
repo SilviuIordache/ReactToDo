@@ -70,49 +70,67 @@ export default class ToDoList extends React.Component {
     return items;
   };
 
-  ListItemsOperations = () => {
-    const operations = (
-      <div className="d-flex justify-content-between border-top pt-2 mt-2 ">
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            onChange={this.toggleCheckAll}
-            disabled={this.props.items.length === 0}
-          />
-        </div>
-        <button
-          className="btn btn-danger btn-sm ms-2"
-          onClick={this.deleteAll}
+  ToggleCheckAll = () => {
+    return (
+      <div className="form-check">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          onChange={this.toggleCheckAll}
           disabled={this.props.items.length === 0}
+        />
+      </div>
+    )
+  }
+
+  DeleteAll = () => {
+    return (
+      <button
+        className="btn btn-danger btn-sm ms-2 px-3"
+        onClick={this.deleteAll}
+        disabled={this.props.items.length === 0}
+      >
+      <i className="far fa-xs fa-trash-alt"></i>
+    </button>
+    )
+  }
+
+  DeleteAllChecked = () => {
+    return (
+      <div className="d-flex justify-content-center">
+        <button
+          className="btn btn-warning d-flex align-items-center py-2"
+          disabled={this.getCompletedItemsNumber() === 0}
+          onClick={this.deleteAllChecked}
         >
           <i className="far fa-xs fa-trash-alt"></i>
+          <span className="mx-2">all</span>
+          <input type='checkbox' checked></input>
         </button>
+      </div>
+    );
+  };
+
+  ListFooter = () => {
+    const operations = (
+      <div className="d-flex justify-content-between align-items-center border-top pt-2 mt-2 ">
+       {this.ToggleCheckAll()}
+       <div className="d-flex">
+        {this.DeleteAllChecked()}
+        {this.DeleteAll()}
+       </div>
       </div>
     );
     return operations;
   };
 
-  ListFooter = () => {
-    return (
-      <div className="mt-4 d-flex justify-content-center">
-        <button
-          className="btn btn-warning"
-          disabled={this.getCompletedItemsNumber() === 0}
-          onClick={this.deleteAllChecked}
-        >
-          Delete all checked
-        </button>
-      </div>
-    );
-  };
+ 
 
   render() {
     return (
       <div className="card bg-white p-4">
         {this.ListHeader()}
         {this.ListItems()}
-        {this.ListItemsOperations()}
         {this.ListFooter()}
       </div>
     );
