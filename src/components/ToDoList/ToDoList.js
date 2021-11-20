@@ -105,7 +105,7 @@ export default class ToDoList extends React.Component {
         >
           <i className="far fa-xs fa-trash-alt"></i>
           <span className="mx-2">all</span>
-          <input type='checkbox' checked></input>
+          <input type='checkbox' checked readOnly></input>
         </button>
       </div>
     );
