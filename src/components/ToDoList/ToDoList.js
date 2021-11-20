@@ -90,7 +90,7 @@ export default class ToDoList extends React.Component {
         onClick={this.deleteAll}
         disabled={this.props.items.length === 0}
       >
-      <i className="far fa-xs fa-trash-alt"></i>
+      <i className="far fa-md fa-trash-alt"></i>
     </button>
     )
   }
@@ -103,7 +103,7 @@ export default class ToDoList extends React.Component {
           disabled={this.getCompletedItemsNumber() === 0}
           onClick={this.deleteAllChecked}
         >
-          <i className="far fa-xs fa-trash-alt"></i>
+          <i className="far fa-md fa-trash-alt"></i>
           <span className="mx-2">all</span>
           <input type='checkbox' checked readOnly></input>
         </button>
