@@ -112,7 +112,7 @@ export default class ToDo extends React.Component {
     return (
       <div className="container">
         <div className="row d-flex justify-content-center mt-5">
-          <div className="col-12 col-md-6 col-xl-4">
+          <div className="col-12 col-md-6 col-xl-4 mb-2 mb-md-0">
             <AddItemForm 
               handleNewItem={this.handleNewItemInput}
               addItem={this.addItem}
