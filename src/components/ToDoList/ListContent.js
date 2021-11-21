@@ -1,7 +1,5 @@
 import React from "react";
 import ToDoListItem from "../ToDoListItem/ToDoListItem.js";
-
-
 export default class ToDoItems extends React.Component {
   toggleCompletion = (event) => {
     this.props.toggleCompletion(event);

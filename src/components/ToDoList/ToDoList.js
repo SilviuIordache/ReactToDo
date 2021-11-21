@@ -1,5 +1,5 @@
 import React from "react";
-import ToDoItems from "../ToDoItems/ToDoItems.js";
+import ListContent from "./ListContent.js";
 import ListFooter from "./ListFooter";
 import ListHeader from "./ListHeader";
 
@@ -45,7 +45,7 @@ export default class ToDoList extends React.Component {
           completedItemsCount={this.getCompletedItemsNumber()}
           totalItems={this.props.items.length}
         />
-        <ToDoItems
+        <ListContent
           items={this.props.items}
           toggleCompletion={this.toggleCompletion}
           deleteItem={this.deleteItem}
