@@ -2,35 +2,48 @@ import React from 'react';
 
 export default class AddItemForm extends React.Component {
 
-  onChange = (event) => {
-    this.props.onChange(event.target.value);
+  handleNewItem = (event) => {
+    this.props.handleNewItem(event.target.value);
   }
 
-  onSubmit = (event) => {
+  addItem = (event) => {
     event.preventDefault();
-    this.props.onSubmit();
+    this.props.addItem();
   }
 
   render () {
     return (
-      <form onSubmit={this.onSubmit} className="card bg-white p-4">
-        <label className="text-left">
-          <h2 className='mb-4'>Add new item</h2>
-          <div>
-            <input type="text"
-              className='form-control'
-              onChange={this.onChange}
-              value={this.props.inputText}
-            />
-          </div>
-        </label>
-        <input 
-          className="mt-3 w-50 btn btn-primary"
-          type="submit"
-          value="Add"
-          disabled={this.props.inputText === ''}
+      <form onSubmit={this.addItem} className="card bg-white p-4">
+        <h2 className='mb-4'>Add new item</h2>
+        <ItemInput
+          value={this.props.inputText}
+          onChange={this.handleNewItem}
         />
+        <AddItemButton disabled={this.props.inputText === ''}/>
       </form>
     )
   }
+}
+
+function ItemInput (props) {
+  return (
+    <div>
+      <input type="text"
+        className='form-control'
+        onChange={props.onChange}
+        value={props.value}
+      />
+    </div>
+  )
+}
+
+function AddItemButton (props) {
+  return (
+    <input 
+      className="mt-3 w-50 btn btn-primary"
+      type="submit"
+      value="Add"
+      disabled={props.disabled}
+    />
+  )
 }

@@ -114,8 +114,8 @@ export default class ToDo extends React.Component {
         <div className="row d-flex justify-content-center mt-5">
           <div className="col-12 col-md-6 col-xl-4">
             <AddItemForm 
-              onChange={this.handleNewItemInput}
-              onSubmit={this.addItem}
+              handleNewItem={this.handleNewItemInput}
+              addItem={this.addItem}
               inputText={this.state.inputText}
             />
           </div>
