@@ -1,6 +1,13 @@
 import React from 'react';
 
 export default class ToDoListItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editMode: false,
+      editText: ''
+    }
+  }
 
   toggleCompletion = () => {
     this.props.toggleCompletion(this.props.index);
@@ -11,7 +18,22 @@ export default class ToDoListItem extends React.Component {
   }
 
   editItem = () => {
-    this.props.editItem(this.props.index)
+    // this.props.editItem(this.props.index)
+    this.setState({
+      editMode: true,
+      editText: this.props.item.text
+    })
+
+  }
+
+  handleEditChanges = (e) => {
+    this.setState({
+      editText: e.target.value
+    })
+  }
+
+  saveEditChanges = () => {
+    console.log('send changes')
   }
 
   ItemCompletion = () => {
@@ -30,22 +52,35 @@ export default class ToDoListItem extends React.Component {
       className += ' text-decoration-line-through';
     }
     return (
-      <p className={className}>{this.props.item.text}</p>
+      <div>
+        {this.state.editMode 
+          ? <input onChange={this.handleEditChanges} value={this.state.editText}/> 
+          : <p className={className}>{this.props.item.text}</p>
+        }
+      </div>
     )
   }
 
-  ItemDelete = () => {
+  DeleteButton = () => {
     return (
       <button className="btn btn-secondary btn-sm ms-2" onClick={this.deleteItem}>
-        <i className="far fa-xs fa-trash-alt"></i>
+        <i className="far fa-trash-alt"></i>
       </button>
     )
   }
 
-  ItemEdit = () => {
+  EditButton = () => {
     return (
       <button className="btn btn-secondary btn-sm ms-2" onClick={this.editItem}>
-        <i className="fas fa-xs fa-edit"></i>
+        <i className="fas fa-edit"></i>
+      </button>
+    )
+  }
+
+  SaveEditChangesButton = () => {
+    return (
+      <button className="btn btn-primary btn-sm ms-2" onClick={this.editItem}>
+        <i className="fas fa-save"></i>
       </button>
     )
   }
@@ -59,8 +94,9 @@ export default class ToDoListItem extends React.Component {
         </div>
 
         <div className='d-flex align-items-center'>
-          {this.ItemEdit()}
-          {this.ItemDelete()}
+          {this.SaveEditChangesButton()}
+          {this.EditButton()}
+          {this.DeleteButton()}
         </div>
         
       </div> 
