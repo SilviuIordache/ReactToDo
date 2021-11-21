@@ -10,8 +10,8 @@ export default class ToDoItems extends React.Component {
   };
 
   saveItemEdit = (index, newText) => {
-    this.props.saveItemEdit(index, newText)
-  }
+    this.props.saveItemEdit(index, newText);
+  };
 
   render() {
     const items = this.props.items?.map((item, index) => (

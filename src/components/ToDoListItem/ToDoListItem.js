@@ -1,46 +1,46 @@
-import React from 'react';
+import React from "react";
 
 export default class ToDoListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       editMode: false,
-      editText: ''
-    }
+      editText: "",
+    };
   }
 
   toggleCompletion = () => {
     this.props.toggleCompletion(this.props.index);
-  }
+  };
 
   deleteItem = () => {
-    this.props.deleteItem(this.props.index)
-  }
+    this.props.deleteItem(this.props.index);
+  };
 
   editItem = () => {
     this.setState({
       editMode: true,
-      editText: this.props.item.text
-    })
-  }
+      editText: this.props.item.text,
+    });
+  };
 
   handleEditChanges = (e) => {
     this.setState({
-      editText: e.target.value
-    })
-  }
+      editText: e.target.value,
+    });
+  };
 
   saveEditChanges = () => {
-    this.props.saveItemEdit(this.props.index, this.state.editText)
+    this.props.saveItemEdit(this.props.index, this.state.editText);
     this.setState({
-      editMode: false
-    })
-  }
+      editMode: false,
+    });
+  };
 
   render() {
     return (
-      <div className='d-flex justify-content-between mb-3'>
-        <div className='d-flex align-items-center'>
+      <div className="d-flex justify-content-between mb-3">
+        <div className="d-flex align-items-center">
           <ItemCompletion
             onChange={this.toggleCompletion}
             checked={this.props.item.completed}
@@ -54,65 +54,66 @@ export default class ToDoListItem extends React.Component {
           />
         </div>
 
-        <div className='d-flex align-items-center'>
-          { this.state.editMode 
-            ? <SaveEditButton onClick={this.saveEditChanges}/>
-            : <EditButton onClick={this.editItem}/>
-          }
-          <DeleteButton onClick={this.deleteItem}/>
+        <div className="d-flex align-items-center">
+          {this.state.editMode ? (
+            <SaveEditButton onClick={this.saveEditChanges} />
+          ) : (
+            <EditButton onClick={this.editItem} />
+          )}
+          <DeleteButton onClick={this.deleteItem} />
         </div>
-        
-      </div> 
-    )
+      </div>
+    );
   }
 }
 
-function ItemCompletion (props) {
+function ItemCompletion(props) {
   return (
-    <input 
+    <input
       onChange={props.onChange}
       checked={props.checked}
-      type='checkbox'
-      className='form-check-input me-2'
+      type="checkbox"
+      className="form-check-input me-2"
     />
-  )
+  );
 }
 
-function ItemDescription (props) {
-  let className = 'mb-0'
+function ItemDescription(props) {
+  let className = "mb-0";
   if (props.completed) {
-    className += ' text-decoration-line-through';
+    className += " text-decoration-line-through";
   }
   return (
     <div>
-      { props.editMode 
-        ? <input onChange={props.onChange} value={props.editText}/> 
-        : <p className={className}>{props.itemText}</p>
-      }
+      {props.editMode ? (
+        <input onChange={props.onChange} value={props.editText} />
+      ) : (
+        <p className={className}>{props.itemText}</p>
+      )}
     </div>
-  )
+  );
 }
 
-function EditButton (props) {
+function EditButton(props) {
   return (
     <button className="btn btn-secondary btn-sm ms-2" onClick={props.onClick}>
       <i className="fas fa-edit"></i>
     </button>
-  )
+  );
 }
 
-function DeleteButton (props) {
+function DeleteButton(props) {
   return (
     <button className="btn btn-secondary btn-sm ms-2" onClick={props.onClick}>
       <i className="far fa-trash-alt"></i>
     </button>
-  )
+  );
 }
 
-function SaveEditButton (props) {
+function SaveEditButton(props) {
   return (
     <button className="btn btn-primary btn-sm ms-2" onClick={props.onClick}>
       <i className="fas fa-save"></i>
     </button>
-  )
+  );
 }

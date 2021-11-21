@@ -1,12 +1,11 @@
 import React from "react";
 
 export default class ListFooter extends React.Component {
-
   toggleCheckAll = (event) => {
     this.props.toggleCheckAll(event);
   };
 
-   deleteAll = () => {
+  deleteAll = () => {
     this.props.deleteAll();
   };
 

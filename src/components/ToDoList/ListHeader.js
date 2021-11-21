@@ -1,4 +1,4 @@
-export default function ListHeader (props) {
+export default function ListHeader(props) {
   let className = "mb-2 d-flex justify-content-between mb-4";
   if (props.allCompleted) {
     className += " text-success";
@@ -16,4 +16,4 @@ export default function ListHeader (props) {
       </h2>
     </div>
   );
-};
+}
