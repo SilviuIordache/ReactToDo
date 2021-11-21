@@ -54,7 +54,7 @@ export default class ToDo extends React.Component {
     });
   }
 
-  updateNewItem = (newVal) => {
+  handleNewItemInput = (newVal) => {
     this.setState({
       inputText: newVal
     })
@@ -69,19 +69,10 @@ export default class ToDo extends React.Component {
     }
   }
 
-  editItem = (index) => {
-    // make copy of items
-    const tempItems = this.state.items
-
-    // copy itemToEdit
-    const editItem = tempItems[index];
-
-    // remove it from the temp list
-    tempItems.splice(index, 1)
-
-    this.setState({
-      inputText: editItem.text,
-    })
+  saveItemEdit = (index, newText) => {
+    const tempItems = this.state.items;
+    tempItems[index].text = newText;
+    this.updateList(tempItems);
   }
 
   toggleCompletion = (index) => {
@@ -123,8 +114,8 @@ export default class ToDo extends React.Component {
         <div className="row d-flex justify-content-center mt-5">
           <div className="col-12 col-md-6 col-xl-4">
             <AddItemForm 
+              onChange={this.handleNewItemInput}
               onSubmit={this.addItem}
-              onChange={this.updateNewItem}
               inputText={this.state.inputText}
             />
           </div>
@@ -136,7 +127,7 @@ export default class ToDo extends React.Component {
               deleteAll={this.deleteAll}
               toggleCompletion={this.toggleCompletion}
               deleteItem={this.deleteItem}
-              editItem={this.editItem}
+              saveItemEdit={this.saveItemEdit}
             />
           </div>
         </div>
